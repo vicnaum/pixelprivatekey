@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Pixel Key",
+  "name": "Pixel Key - Generate an Ethereum private key from pixel art",
   "icons": [
     {
       "src": "favicon.ico",
