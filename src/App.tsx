@@ -31,7 +31,10 @@ function App() {
   };
 
   const handlePrivateKeyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newPrivateKey = event.target.value;
+    let newPrivateKey = event.target.value;
+    if (newPrivateKey.startsWith('0x')) {
+      newPrivateKey = newPrivateKey.slice(2);
+    }
     setPrivateKey(newPrivateKey);
     const newDrawing = new PrivateKeyArt(newPrivateKey);
     setDrawing(newDrawing);

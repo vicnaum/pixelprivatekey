@@ -13,23 +13,23 @@ const Canvas: React.FC<Props> = ({ drawing, setDrawing, scale }) => {
   const isDrawingRef = useRef(false);
   const isErasingRef = useRef(false);
 
-  const drawPixel = (event: MouseEvent, context: CanvasRenderingContext2D, isErasing: boolean) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = Math.floor((event.clientX - rect.left) / scale);
-    const y = Math.floor((event.clientY - rect.top) / scale);
-
-    drawing.setPixel(x, y, !isErasing);
-    const newDrawing = new PrivateKeyArt(drawing.toPrivateKey());
-    setDrawing(newDrawing);
-
-    context.fillStyle = isErasing ? 'white' : 'black';
-    context.fillRect(x * scale, y * scale, scale, scale);
-  };
-
   useEffect(() => {
+    const drawPixel = (event: MouseEvent, context: CanvasRenderingContext2D, isErasing: boolean) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const x = Math.floor((event.clientX - rect.left) / scale);
+      const y = Math.floor((event.clientY - rect.top) / scale);
+
+      drawing.setPixel(x, y, !isErasing);
+      const newDrawing = new PrivateKeyArt(drawing.toPrivateKey());
+      setDrawing(newDrawing);
+
+      context.fillStyle = isErasing ? 'white' : 'black';
+      context.fillRect(x * scale, y * scale, scale, scale);
+    };
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
